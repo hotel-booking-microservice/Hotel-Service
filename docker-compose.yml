@@ -1,0 +1,26 @@
+﻿services:
+  mongo:
+    image: mongo:7
+    container_name: hotel-service-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh --quiet localhost:27017/hotel_db
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  hotel-service:
+    build: .
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/hotel_db
+    ports:
+      - "8082:8082"
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+volumes:
+  mongo_data:
