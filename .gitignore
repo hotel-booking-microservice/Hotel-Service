@@ -1,4 +1,5 @@
-﻿target/
+﻿# ===== Build & IDE files =====
+target/
 .mvn/
 mvnw
 mvnw.cmd
@@ -9,3 +10,15 @@ mvnw.cmd
 .settings/
 .DS_Store
 logs/
+
+# ===== Local docs/scripts you want to keep only locally =====
+COMPLETE_GUIDE.md
+SETUP_GUIDE.md
+SIMPLE_RUN_GUIDE.md
+HOW_TO_RUN.md
+START_APPLICATION.ps1
+TEST_APPLICATION.ps1
+
+# ===== Ignore all markdown except README =====
+*.md
+!README.md
